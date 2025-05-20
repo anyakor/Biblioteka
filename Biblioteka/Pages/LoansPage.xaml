@@ -1,0 +1,58 @@
+﻿<Page x:Class="Biblioteka.Pages.LoansPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:Biblioteka.Pages"
+      xmlns:win="clr-namespace:Biblioteka.Windows"
+      Background="#1e1e1e">
+
+    <Page.Resources>
+        <Style x:Key="DataGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#3d3d3d"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#0078D7"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Margin" Value="5,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderBrush" Value="#005A9E"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="Выдать книгу" Click="Add_Click" Style="{StaticResource MenuButtonStyle}"/>
+            <Button Content="Вернуть выбранную" Click="Return_Click" Style="{StaticResource MenuButtonStyle}"/>
+        </StackPanel>
+
+        <DataGrid x:Name="LoansGrid"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  Background="#1e1e1e"
+                  Foreground="White"
+                  RowBackground="#2a2a2a"
+                  AlternatingRowBackground="#333"
+                  ColumnHeaderStyle="{StaticResource DataGridHeaderStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Книга" Binding="{Binding book_title}" Width="*" />
+                <DataGridTextColumn Header="Читатель" Binding="{Binding reader_name}" Width="200"/>
+                <DataGridTextColumn Header="Сотрудник" Binding="{Binding employee_name}" Width="200"/>
+                <DataGridTextColumn Header="Дата выдачи" Binding="{Binding loan_date}" Width="120"/>
+                <DataGridTextColumn Header="Срок до" Binding="{Binding return_date}" Width="120"/>
+                <DataGridTextColumn Header="Факт. возврат" Binding="{Binding actual_return_date}" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
